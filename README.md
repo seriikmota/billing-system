@@ -1,15 +1,16 @@
-Projeto para aula de ProgWeb I
-Alunos: Erik de Sousa Mota e Davi Faria Gonçalves
+<h2>Projeto para aula de ProgWeb I</h2>
+<p>Alunos: Erik de Sousa Mota e Davi Faria Gonçalves</p>
 
-Entidade -> Venda
+<h3>Entidade</h3>
+<p>-> Venda</p>
 
-Atributos:
+<h3>Atributos</h3>
 
-Id: Long
-Data de criação: LocalDate
-Vendedor: String
-Cliente: String
-Produto: String
-Preço do produto: Double
-Preço da venda: Double
-Situação da venda: Enum
+<p>-> Id: Long</p>
+<p>-> Data de criação: LocalDate</p>
+<p>-> Vendedor: String</p>
+<p>-> Cliente: String</p>
+<p>-> Produto: String</p>
+<p>-> Preço do produto: Double</p>
+<p>-> Preço da venda: Double</p>
+<p>-> Situação da venda: Enum</p>
