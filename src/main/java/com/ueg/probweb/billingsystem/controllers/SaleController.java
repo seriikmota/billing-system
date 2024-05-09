@@ -1,9 +1,9 @@
 package com.ueg.probweb.billingsystem.controllers;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.entities.dtos.CreateSaleDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.SaleCreateDTO;
 import com.ueg.probweb.billingsystem.entities.dtos.SaleDateRangeDTO;
-import com.ueg.probweb.billingsystem.entities.dtos.UpdateSaleDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.SaleUpdateDTO;
 import com.ueg.probweb.billingsystem.mappers.SaleMapper;
 import com.ueg.probweb.billingsystem.services.ISaleService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,7 +36,7 @@ public class SaleController {
     })
     @PostMapping
     @Transactional
-    public ResponseEntity<Object> create(@RequestBody CreateSaleDTO dto){
+    public ResponseEntity<Object> create(@RequestBody SaleCreateDTO dto){
         Object object = service.create(mapper.toModel(dto));
         return ResponseEntity.status(HttpStatus.CREATED).body(object);
     }
@@ -49,7 +49,7 @@ public class SaleController {
     })
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody UpdateSaleDTO dto){
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody SaleUpdateDTO dto){
         Object object = service.update(id, mapper.toModel(dto));
         return ResponseEntity.ok(object);
     }

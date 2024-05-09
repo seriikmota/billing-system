@@ -7,7 +7,8 @@ public enum ErrorEnum {
     GENERAL(0L, "Erro desconhecido!"),
     NOT_FOUND(404L, "Registro não encontrado!"),
     MANDATORY_FIELD_NOT_FOUND(1L, "Campo Obrigatório não preenchido"),
-    DATE_START_AFTER_DATE_FINAL(2L, "A data inicial é maior que a final!");
+    DATE_START_AFTER_DATE_FINAL(2L, "A data inicial é maior que a final!"),
+    PARAMETER_REQUIRED(3L, "Parâmetro obrigatório não inserido: ");
 
     private final Long id;
     private final String message;

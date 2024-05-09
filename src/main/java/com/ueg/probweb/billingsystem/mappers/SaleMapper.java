@@ -1,13 +1,13 @@
 package com.ueg.probweb.billingsystem.mappers;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.entities.dtos.CreateSaleDTO;
-import com.ueg.probweb.billingsystem.entities.dtos.UpdateSaleDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.SaleCreateDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.SaleUpdateDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SaleMapper {
-    public Sale toModel(CreateSaleDTO dto){
+    public Sale toModel(SaleCreateDTO dto){
         Sale s = new Sale();
         s.setSeller(dto.getSeller());
         s.setClient(dto.getClient());
@@ -17,7 +17,7 @@ public class SaleMapper {
         s.setSituation(dto.getSituation());
         return s;
     }
-    public Sale toModel(UpdateSaleDTO dto){
+    public Sale toModel(SaleUpdateDTO dto){
         Sale s = new Sale();
         s.setProduct(dto.getProduct());
         s.setProductPrice(dto.getProductPrice());

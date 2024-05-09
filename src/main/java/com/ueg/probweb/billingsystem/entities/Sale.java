@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Sale implements Comparable<Sale> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     private LocalDate createdDate;
     private String seller;
     private String client;
