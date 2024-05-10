@@ -1,9 +1,12 @@
-package com.ueg.probweb.billingsystem.services;
+package com.ueg.probweb.billingsystem.services.impl;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
 import com.ueg.probweb.billingsystem.exceptions.DataException;
 import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.exceptions.ParameterRequiredException;
+import com.ueg.probweb.billingsystem.mappers.GenericUpdateMapper;
+import com.ueg.probweb.billingsystem.services.IGenericService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -17,11 +20,14 @@ public abstract class GenericService<
         >
         implements IGenericService<MODEL, TYPE_PK> {
 
-    private final REPOSITORY repository;
 
-    public GenericService(REPOSITORY repository) {
-        this.repository = repository;
-    }
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    private GenericUpdateMapper<MODEL, TYPE_PK> mapper;
+
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    private REPOSITORY repository;
 
     public List<MODEL> listAll() {
         return repository.findAll();
@@ -66,7 +72,7 @@ public abstract class GenericService<
     }
 
     protected void updateDataDBFromUpdate(MODEL dataToUpdate, MODEL dataDB){
-        //mapper.updateModelFromModel(dataDB, dataToUpdate);
+        mapper.updateModelFromModel(dataDB, dataToUpdate);
     }
 
     protected abstract void prepareToCreate(MODEL dado);

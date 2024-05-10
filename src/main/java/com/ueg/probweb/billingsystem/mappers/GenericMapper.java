@@ -14,7 +14,7 @@ public interface GenericMapper<
         DTOList,
         MODEL extends GenericModel<TYPE_PK>,
         TYPE_PK
-        > {
+        > extends GenericUpdateMapper<MODEL, TYPE_PK> {
 
     MODEL toModel(DTO dto);
 
@@ -29,6 +29,4 @@ public interface GenericMapper<
 
     @IterableMapping(qualifiedByName = "toDTOList")
     List<DTOList> fromModelToDTOList(List<MODEL> modelList);
-
-    void updateModelFromModel(@MappingTarget MODEL entity, MODEL updateEntity);
 }

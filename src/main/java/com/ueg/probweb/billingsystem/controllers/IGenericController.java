@@ -1,4 +1,4 @@
-/*package com.ueg.probweb.billingsystem.controllers;
+package com.ueg.probweb.billingsystem.controllers;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
 import com.ueg.probweb.billingsystem.mappers.GenericMapper;
@@ -58,4 +58,3 @@ public interface IGenericController<
     })
     public ResponseEntity<MODEL> getById(TYPE_PK id);
 }
-*/

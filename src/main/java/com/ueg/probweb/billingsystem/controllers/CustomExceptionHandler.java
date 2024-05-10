@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class CustomExceptionHandler {
-    /*@ExceptionHandler(DataException.class)
+    @ExceptionHandler(DataException.class)
     public ResponseEntity<String> handleDataException(DataException ex){
         ex.printStackTrace();
         if (ex.getError() == ErrorEnum.NOT_FOUND){
@@ -35,5 +35,5 @@ public class CustomExceptionHandler {
     public ResponseEntity<String> handleException(Exception ex) {
         ex.printStackTrace();
         return ResponseEntity.badRequest().body("Ocorreu um erro ao realizar a requisição!");
-    }*/
+    }
 }

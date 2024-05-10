@@ -1,8 +1,9 @@
-/*package com.ueg.probweb.billingsystem.controllers;
+package com.ueg.probweb.billingsystem.controllers.Impl;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
 import com.ueg.probweb.billingsystem.mappers.GenericMapper;
 import com.ueg.probweb.billingsystem.services.IGenericService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -13,19 +14,19 @@ public abstract class GenericController<
         DTOCreate,
         DTOUpdate,
         DTOList,
-        TYPE_PK,
         MODEL extends GenericModel<TYPE_PK>,
+        TYPE_PK,
         SERVICE extends IGenericService<MODEL, TYPE_PK>,
         MAPPER extends GenericMapper<DTO,DTOCreate, DTOUpdate, DTOList , MODEL, TYPE_PK>
         > {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
     protected SERVICE service;
-    protected MAPPER mapper;
 
-    public GenericController(SERVICE service, MAPPER mapper) {
-        this.service = service;
-        this.mapper = mapper;
-    }
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    protected MAPPER mapper;
 
     public ResponseEntity<DTO> create(DTOCreate dto){
         MODEL inputModel = mapper.fromModelCreatedToModel(dto);
@@ -48,7 +49,7 @@ public abstract class GenericController<
     }
 
 
-    public ResponseEntity<DTOList> listAll(){
+    public ResponseEntity<List<DTOList>> listAll(){
         List<DTOList> modelList = mapper.fromModelToDTOList(service.listAll());
         return ResponseEntity.of(
                 Optional.ofNullable(modelList)
@@ -62,4 +63,3 @@ public abstract class GenericController<
     }
 
 }
-*/
