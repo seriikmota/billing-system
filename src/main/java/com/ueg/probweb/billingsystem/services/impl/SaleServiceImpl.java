@@ -21,11 +21,9 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository> 
 
     @Autowired
     private SaleRepository repository;
+    @Autowired
+    private List<ISaleValidations> validations;
 
-    @Override
-    protected void prepareToCreate(Sale dado) {
-
-    }
     @Override
     public List<Sale> getSalesPerDates(LocalDate initialDate, LocalDate finalDate) {
         validateDates(initialDate, finalDate);
@@ -46,23 +44,18 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository> 
     }
 
     @Override
-    protected void validateMandatoryFields(Sale dado) {
-
+    protected void prepareToCreate(Sale data) {
+        data.setCreatedDate(LocalDate.now());
     }
 
     @Override
-    protected void validateBusinessLogic(Sale dado) {
-
+    protected void validateForCreate(Sale data) {
+        validations.forEach(v -> v.validate(data, ValidationAction.CREATE));
     }
 
     @Override
-    protected void validateBusinessLogicForInsert(Sale dado) {
-
-    }
-
-    @Override
-    protected void validateBusinessLogicForUpdate(Sale dado) {
-
+    protected void validateForUpdate(Sale data) {
+        validations.forEach(v -> v.validate(data, ValidationAction.UPDATE));
     }
 
     private void validateDates(LocalDate initialDate, LocalDate finalDate) {

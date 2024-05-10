@@ -1,6 +1,7 @@
 package com.ueg.probweb.billingsystem.services.impl;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
+import com.ueg.probweb.billingsystem.entities.Sale;
 import com.ueg.probweb.billingsystem.exceptions.DataException;
 import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.exceptions.ParameterRequiredException;
@@ -35,17 +36,13 @@ public abstract class GenericService<
 
     public MODEL create(MODEL data) {
         prepareToCreate(data);
-        validateMandatoryFields(data);
-        validateBusinessLogic(data);
-        validateBusinessLogicForInsert(data);
+        validateForCreate(data);
         return repository.save(data);
     }
 
     public MODEL update(MODEL dataToUpdate){
         var dataDB = validateIdModelExistsAndGet(dataToUpdate.getId());
-        validateMandatoryFields(dataToUpdate);
-        validateBusinessLogic(dataToUpdate);
-        validateBusinessLogicForUpdate(dataToUpdate);
+        validateForUpdate(dataToUpdate);
         updateDataDBFromUpdate(dataToUpdate, dataDB);
         return repository.save(dataDB);
     }
@@ -75,9 +72,7 @@ public abstract class GenericService<
         mapper.updateModelFromModel(dataDB, dataToUpdate);
     }
 
-    protected abstract void prepareToCreate(MODEL dado);
-    protected abstract void validateMandatoryFields(MODEL dado);
-    protected abstract void validateBusinessLogic(MODEL dado) ;
-    protected abstract void validateBusinessLogicForInsert(MODEL dado);
-    protected abstract void validateBusinessLogicForUpdate(MODEL dado);
+    protected abstract void prepareToCreate(MODEL data);
+    protected abstract void validateForCreate(MODEL data);
+    protected abstract void validateForUpdate(MODEL data);
 }
