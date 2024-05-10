@@ -1,7 +1,6 @@
 package com.ueg.probweb.billingsystem.services.impl;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
-import com.ueg.probweb.billingsystem.entities.Sale;
 import com.ueg.probweb.billingsystem.exceptions.DataException;
 import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.exceptions.ParameterRequiredException;

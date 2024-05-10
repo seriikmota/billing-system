@@ -1,7 +1,6 @@
 package com.ueg.probweb.billingsystem.services;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.services.impl.GenericService;
 
 import java.time.LocalDate;
 import java.util.List;

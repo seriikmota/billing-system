@@ -2,7 +2,6 @@ package com.ueg.probweb.billingsystem.mappers;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
 import org.mapstruct.IterableMapping;
-import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
 
 import java.util.List;

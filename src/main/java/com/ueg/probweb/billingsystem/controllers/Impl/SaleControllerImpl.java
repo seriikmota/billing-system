@@ -1,5 +1,6 @@
 package com.ueg.probweb.billingsystem.controllers.Impl;
 
+import com.ueg.probweb.billingsystem.controllers.ISaleController;
 import com.ueg.probweb.billingsystem.entities.Sale;
 import com.ueg.probweb.billingsystem.entities.dtos.*;
 import com.ueg.probweb.billingsystem.mappers.SaleMapper;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("${api.version}/sale")
 @Tag(name = "Venda")
+@CrossOrigin()
 public class SaleControllerImpl extends GenericController<
         SaleDTO,
         SaleCreateDTO,
@@ -19,7 +21,7 @@ public class SaleControllerImpl extends GenericController<
         Sale,
         Long,
         ISaleService,
-        SaleMapper> {
+        SaleMapper> implements ISaleController {
 
     @GetMapping("/salesPerDates")
     public ResponseEntity<Object> getSalesPerDates(@RequestBody SaleDateRangeDTO dto){
