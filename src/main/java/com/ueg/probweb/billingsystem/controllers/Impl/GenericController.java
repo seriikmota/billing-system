@@ -1,5 +1,6 @@
 package com.ueg.probweb.billingsystem.controllers.Impl;
 
+import com.ueg.probweb.billingsystem.controllers.IGenericController;
 import com.ueg.probweb.billingsystem.entities.GenericModel;
 import com.ueg.probweb.billingsystem.mappers.GenericMapper;
 import com.ueg.probweb.billingsystem.services.IGenericService;
@@ -18,7 +19,8 @@ public abstract class GenericController<
         TYPE_PK,
         SERVICE extends IGenericService<MODEL, TYPE_PK>,
         MAPPER extends GenericMapper<DTO,DTOCreate, DTOUpdate, DTOList , MODEL, TYPE_PK>
-        > {
+        >
+{
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
