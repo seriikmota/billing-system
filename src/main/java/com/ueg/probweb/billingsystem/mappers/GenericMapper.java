@@ -1,6 +1,11 @@
 package com.ueg.probweb.billingsystem.mappers;
 
 import com.ueg.probweb.billingsystem.entities.GenericModel;
+import org.mapstruct.IterableMapping;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.Named;
+
+import java.util.List;
 
 public interface GenericMapper<
         DTO,
@@ -10,4 +15,20 @@ public interface GenericMapper<
         MODEL extends GenericModel<TYPE_PK>,
         TYPE_PK
         > {
+
+    MODEL toModel(DTO dto);
+
+    MODEL fromModelCreatedToModel(DTOCreate dtoCreate);
+
+    MODEL fromModelUpdatedToModel(DTOUpdate dtoUpdate);
+
+    DTO toDTO(MODEL model);
+
+    @Named(value = "toDTOList")
+    DTOList toDTOList(MODEL model);
+
+    @IterableMapping(qualifiedByName = "toDTOList")
+    List<DTOList> fromModelToDTOList(List<MODEL> modelList);
+
+    void updateModelFromModel(@MappingTarget MODEL entity, MODEL updateEntity);
 }

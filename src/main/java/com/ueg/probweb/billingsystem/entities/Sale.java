@@ -2,6 +2,7 @@ package com.ueg.probweb.billingsystem.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
@@ -10,9 +11,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
+@SuperBuilder
 @Table(name = "VENDA")
-public class Sale implements Comparable<Sale> {
+public class Sale implements Comparable<Sale>, GenericModel<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
