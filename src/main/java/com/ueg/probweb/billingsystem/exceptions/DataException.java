@@ -10,16 +10,8 @@ public class DataException extends RuntimeException {
         super(message);
         this.error = ErrorEnum.GENERAL;
     }
-    public DataException(String message, Throwable e){
-        super(message, e);
-        this.error = ErrorEnum.GENERAL;
-    }
     public DataException(ErrorEnum err){
         super(err.getMessage());
-        this.error = err;
-    }
-    public DataException(String message, ErrorEnum err, Throwable e){
-        super(message, e);
         this.error = err;
     }
 }
