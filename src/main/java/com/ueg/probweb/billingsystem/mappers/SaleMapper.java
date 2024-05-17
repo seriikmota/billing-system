@@ -7,9 +7,12 @@ import com.ueg.probweb.billingsystem.entities.dtos.SaleListDTO;
 import com.ueg.probweb.billingsystem.entities.dtos.SaleUpdateDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(
-        componentModel = "spring"
+        componentModel = "spring",
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
 )
 public interface SaleMapper extends GenericMapper<
         SaleDTO,
