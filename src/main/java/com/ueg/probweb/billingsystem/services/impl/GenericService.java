@@ -6,6 +6,8 @@ import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.exceptions.ParameterRequiredException;
 import com.ueg.probweb.billingsystem.mappers.GenericUpdateMapper;
 import com.ueg.probweb.billingsystem.services.IGenericService;
+import com.ueg.probweb.billingsystem.services.validations.IValidations;
+import com.ueg.probweb.billingsystem.services.validations.Impl.ValidationAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,7 +18,8 @@ import java.util.Optional;
 public abstract class GenericService<
         MODEL extends GenericModel<TYPE_PK>,
         TYPE_PK,
-        REPOSITORY extends JpaRepository<MODEL, TYPE_PK>
+        REPOSITORY extends JpaRepository<MODEL, TYPE_PK>,
+        VALIDATIONS extends IValidations<MODEL>
         >
         implements IGenericService<MODEL, TYPE_PK> {
 
@@ -28,6 +31,9 @@ public abstract class GenericService<
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     private REPOSITORY repository;
+
+    @Autowired
+    private List<VALIDATIONS> validations;
 
     public List<MODEL> listAll() {
         return repository.findAll();
@@ -71,7 +77,13 @@ public abstract class GenericService<
         mapper.updateModelFromModel(dataDB, dataToUpdate);
     }
 
+    private void validateForCreate(MODEL data) {
+        validations.forEach(v -> v.validate(data, ValidationAction.CREATE));
+
+    }
+    private void validateForUpdate(MODEL data) {
+        validations.forEach(v -> v.validate(data, ValidationAction.UPDATE));
+    }
+
     protected abstract void prepareToCreate(MODEL data);
-    protected abstract void validateForCreate(MODEL data);
-    protected abstract void validateForUpdate(MODEL data);
 }

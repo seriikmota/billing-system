@@ -6,7 +6,6 @@ import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.repositorys.SaleRepository;
 import com.ueg.probweb.billingsystem.services.ISaleService;
 import com.ueg.probweb.billingsystem.services.validations.ISaleValidations;
-import com.ueg.probweb.billingsystem.services.validations.ValidationAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository> implements ISaleService {
+public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository, ISaleValidations> implements ISaleService {
 
     @Autowired
     private SaleRepository repository;
-    @Autowired
-    private List<ISaleValidations> validations;
 
     @Override
     public List<Sale> getSalesPerDates(LocalDate initialDate, LocalDate finalDate) {
@@ -44,16 +41,6 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository> 
     @Override
     protected void prepareToCreate(Sale data) {
         data.setCreatedDate(LocalDate.now());
-    }
-
-    @Override
-    protected void validateForCreate(Sale data) {
-        validations.forEach(v -> v.validate(data, ValidationAction.CREATE));
-    }
-
-    @Override
-    protected void validateForUpdate(Sale data) {
-        validations.forEach(v -> v.validate(data, ValidationAction.UPDATE));
     }
 
     private void validateDates(LocalDate initialDate, LocalDate finalDate) {

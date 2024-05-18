@@ -17,7 +17,6 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(BusinessRuleException.class)
     public ResponseEntity<String> handleBusinessRuleException(BusinessRuleException ex) {
-        ex.printStackTrace();
         return ResponseEntity.status(ex.getError().getId()).body(ex.getMessage());
     }
 

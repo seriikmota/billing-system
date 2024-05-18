@@ -1,13 +1,14 @@
-package com.ueg.probweb.billingsystem.services.validations;
+package com.ueg.probweb.billingsystem.services.validations.Impl;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
 import com.ueg.probweb.billingsystem.exceptions.BusinessRuleException;
+import com.ueg.probweb.billingsystem.services.validations.ISaleValidations;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Order(1)
 @Component
-public class ValidateFields implements ISaleValidations{
+public class ValidateFields implements ISaleValidations {
     @Override
     public void validate(Sale s, ValidationAction action) {
         if (action == ValidationAction.CREATE){
