@@ -33,11 +33,25 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository, 
     }
 
     @Override
-    public Double getTotalSalesPrice(LocalDate initialDate, LocalDate finalDate) {
+    public List<Object[]> getTotalSalesPrice(LocalDate initialDate, LocalDate finalDate) {
         validateDates(initialDate, finalDate);
         return repository.sumSalesPriceByCreatedDate(initialDate, finalDate);
     }
 
+    @Override
+    public List<Object[]>getProductTotal(){
+        return repository.findProductWithHighestSales();
+    }
+
+    @Override
+    public List<Object[]> getSellerTotal(){
+        return repository.findSellerWithHighestSales();
+    }
+
+    @Override
+    public List<Object[]>getClientTotal(){
+        return repository.findCustomerWithHighestSales();
+    }
     @Override
     protected void prepareToCreate(Sale data) {
         data.setCreatedDate(LocalDate.now());

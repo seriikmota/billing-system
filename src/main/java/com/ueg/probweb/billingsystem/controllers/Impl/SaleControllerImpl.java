@@ -33,8 +33,24 @@ public class SaleControllerImpl extends GenericController<
         return ResponseEntity.ok(service.getTotalSalesPrice());
     }
 
-    @GetMapping("/totalSalesPricePerDate")
+    @PostMapping("/totalSalesPricePerDate")
     public ResponseEntity<Object> getTotalSalesPrice(@RequestBody SaleDateRangeDTO dto){
         return ResponseEntity.ok(service.getTotalSalesPrice(dto.getInitialDate(), dto.getFinalDate()));
     }
+
+    @GetMapping("/totalCliente")
+    public ResponseEntity<Object>getClienteTotal(){
+        return ResponseEntity.ok(service.getClientTotal());
+    }
+
+    @GetMapping("/totalProduto")
+    public ResponseEntity<Object>getProductTotal(){
+        return ResponseEntity.ok(service.getProductTotal());
+    }
+
+    @GetMapping("/totalVendedor")
+    public ResponseEntity<Object>getSellerTotal(){
+        return ResponseEntity.ok(service.getSellerTotal());
+    }
+
 }
