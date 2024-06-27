@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class HighestSellerDTO {
-    private String seller;
+public class HighestDTO {
+    private String name;
     private Double totalSales;
 }

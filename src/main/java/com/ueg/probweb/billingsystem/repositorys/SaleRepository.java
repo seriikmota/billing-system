@@ -1,7 +1,8 @@
 package com.ueg.probweb.billingsystem.repositorys;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.entities.dtos.*;
+import com.ueg.probweb.billingsystem.entities.dtos.HighestDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.TotalSalePerDateDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,28 +28,28 @@ public interface SaleRepository extends JpaRepository<Sale, Long> {
     List<TotalSalePerDateDTO> sumSalesPriceByCreatedDate(@Param("initialDate") LocalDate initialDate,
                                                          @Param("finalDate") LocalDate finalDate);
 
-    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestSellerDTO(s.seller, SUM(s.salePrice)) " +
+    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestDTO(s.seller, SUM(s.salePrice)) " +
             "FROM Sale s " +
             "GROUP BY s.seller " +
             "HAVING SUM(s.salePrice) = (SELECT MAX(subquery.totalSales) FROM " +
             "(SELECT SUM(salePrice) as totalSales FROM Sale GROUP BY seller) AS subquery)")
-    HighestSellerDTO findSellerWithHighestSales();
+    HighestDTO findSellerWithHighestSales();
 
 
-    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestClientDTO(s.client, SUM(s.salePrice)) " +
+    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestDTO(s.client, SUM(s.salePrice)) " +
             "FROM Sale s " +
             "GROUP BY s.client " +
             "HAVING SUM(s.salePrice) = (SELECT MAX(subquery.totalSales) FROM " +
             "(SELECT SUM(salePrice) as totalSales FROM Sale GROUP BY client) AS subquery)")
-    HighestClientDTO findCustomerWithHighestSales();
+    HighestDTO findCustomerWithHighestSales();
 
 
-    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestProductDTO(s.product, SUM(s.salePrice)) " +
+    @Query("SELECT new com.ueg.probweb.billingsystem.entities.dtos.HighestDTO(s.product, SUM(s.salePrice)) " +
             "FROM Sale s " +
             "GROUP BY s.product " +
             "HAVING SUM(s.salePrice) = (SELECT MAX(subquery.totalSales) FROM " +
             "(SELECT SUM(salePrice) as totalSales FROM Sale GROUP BY product) AS subquery)")
-    HighestProductDTO findProductWithHighestSales();
+    HighestDTO findProductWithHighestSales();
 
 }
 

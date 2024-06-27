@@ -1,7 +1,9 @@
 package com.ueg.probweb.billingsystem.controllers;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.entities.dtos.*;
+import com.ueg.probweb.billingsystem.entities.dtos.HighestDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.SaleDateRangeDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.TotalSalePerDateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -32,20 +34,20 @@ public interface ISaleController {
     ResponseEntity<List<TotalSalePerDateDTO>> getTotalSalePerDate(@RequestBody SaleDateRangeDTO dto);
 
     @Operation(description = "Pegar o cliente que mais comprou e o total", responses = {
-            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestClientDTO.class))),
+            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestDTO.class))),
             @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(hidden = true)))
     })
-    public ResponseEntity<HighestClientDTO> getHighestClient();
+    public ResponseEntity<HighestDTO> getHighestClient();
 
     @Operation(description = "Pegar o produto que mais lucrou e o total", responses = {
-            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestProductDTO.class))),
+            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestDTO.class))),
             @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(hidden = true)))
     })
-    public ResponseEntity<HighestProductDTO> getHighestProduct();
+    public ResponseEntity<HighestDTO> getHighestProduct();
 
     @Operation(description = "Pegar o vendedor que mais vendeu e o total", responses = {
-            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestSellerDTO.class))),
+            @ApiResponse(responseCode = "200", content = @Content(schema = @Schema(implementation = HighestDTO.class))),
             @ApiResponse(responseCode = "400", content = @Content(schema = @Schema(hidden = true)))
     })
-    public ResponseEntity<HighestSellerDTO> getHighestSeller();
+    public ResponseEntity<HighestDTO> getHighestSeller();
 }

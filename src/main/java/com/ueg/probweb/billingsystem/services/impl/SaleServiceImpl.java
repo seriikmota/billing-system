@@ -1,10 +1,7 @@
 package com.ueg.probweb.billingsystem.services.impl;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
-import com.ueg.probweb.billingsystem.entities.dtos.HighestClientDTO;
-import com.ueg.probweb.billingsystem.entities.dtos.TotalSalePerDateDTO;
-import com.ueg.probweb.billingsystem.entities.dtos.HighestProductDTO;
-import com.ueg.probweb.billingsystem.entities.dtos.HighestSellerDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.*;
 import com.ueg.probweb.billingsystem.exceptions.BusinessLogicException;
 import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.repositorys.SaleRepository;
@@ -43,17 +40,17 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository, 
     }
 
     @Override
-    public HighestProductDTO getHighestProduct(){
+    public HighestDTO getHighestProduct(){
         return repository.findProductWithHighestSales();
     }
 
     @Override
-    public HighestSellerDTO getHighestSeller(){
+    public HighestDTO getHighestSeller(){
         return repository.findSellerWithHighestSales();
     }
 
     @Override
-    public HighestClientDTO getHighestClient(){
+    public HighestDTO getHighestClient(){
         return repository.findCustomerWithHighestSales();
     }
 

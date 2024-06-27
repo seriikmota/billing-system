@@ -41,17 +41,17 @@ public class SaleControllerImpl extends GenericController<
     }
 
     @GetMapping("/getHighestClient")
-    public ResponseEntity<HighestClientDTO> getHighestClient(){
+    public ResponseEntity<HighestDTO> getHighestClient(){
         return ResponseEntity.ok(service.getHighestClient());
     }
 
     @GetMapping("/getHighestProduct")
-    public ResponseEntity<HighestProductDTO> getHighestProduct(){
+    public ResponseEntity<HighestDTO> getHighestProduct(){
         return ResponseEntity.ok(service.getHighestProduct());
     }
 
     @GetMapping("/getHighestSeller")
-    public ResponseEntity<HighestSellerDTO> getHighestSeller(){
+    public ResponseEntity<HighestDTO> getHighestSeller(){
         return ResponseEntity.ok(service.getHighestSeller());
     }
 
