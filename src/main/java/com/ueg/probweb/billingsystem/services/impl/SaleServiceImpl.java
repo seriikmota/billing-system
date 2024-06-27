@@ -1,6 +1,10 @@
 package com.ueg.probweb.billingsystem.services.impl;
 
 import com.ueg.probweb.billingsystem.entities.Sale;
+import com.ueg.probweb.billingsystem.entities.dtos.HighestClientDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.TotalSalePerDateDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.HighestProductDTO;
+import com.ueg.probweb.billingsystem.entities.dtos.HighestSellerDTO;
 import com.ueg.probweb.billingsystem.exceptions.BusinessLogicException;
 import com.ueg.probweb.billingsystem.exceptions.ErrorEnum;
 import com.ueg.probweb.billingsystem.repositorys.SaleRepository;
@@ -33,25 +37,26 @@ public class SaleServiceImpl extends GenericService<Sale, Long, SaleRepository, 
     }
 
     @Override
-    public List<Object[]> getTotalSalesPrice(LocalDate initialDate, LocalDate finalDate) {
+    public List<TotalSalePerDateDTO> getTotalSalesPrice(LocalDate initialDate, LocalDate finalDate) {
         validateDates(initialDate, finalDate);
         return repository.sumSalesPriceByCreatedDate(initialDate, finalDate);
     }
 
     @Override
-    public List<Object[]>getProductTotal(){
+    public HighestProductDTO getHighestProduct(){
         return repository.findProductWithHighestSales();
     }
 
     @Override
-    public List<Object[]> getSellerTotal(){
+    public HighestSellerDTO getHighestSeller(){
         return repository.findSellerWithHighestSales();
     }
 
     @Override
-    public List<Object[]>getClientTotal(){
+    public HighestClientDTO getHighestClient(){
         return repository.findCustomerWithHighestSales();
     }
+
     @Override
     protected void prepareToCreate(Sale data) {
         data.setCreatedDate(LocalDate.now());

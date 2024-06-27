@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("${api.version}/sale")
 @Tag(name = "Venda")
@@ -24,33 +26,33 @@ public class SaleControllerImpl extends GenericController<
         SaleMapper> implements ISaleController {
 
     @GetMapping("/salesPerDates")
-    public ResponseEntity<Object> getSalesPerDates(@RequestBody SaleDateRangeDTO dto){
+    public ResponseEntity<List<Sale>> getSalesPerDates(@RequestBody SaleDateRangeDTO dto){
         return ResponseEntity.ok(service.getSalesPerDates(dto.getInitialDate(), dto.getFinalDate()));
     }
 
     @GetMapping("/totalSalesPrice")
-    public ResponseEntity<Object> getTotalSalesPrice(){
+    public ResponseEntity<Double> getTotalSalesPrice(){
         return ResponseEntity.ok(service.getTotalSalesPrice());
     }
 
     @PostMapping("/totalSalesPricePerDate")
-    public ResponseEntity<Object> getTotalSalesPrice(@RequestBody SaleDateRangeDTO dto){
+    public ResponseEntity<List<TotalSalePerDateDTO>> getTotalSalePerDate(@RequestBody SaleDateRangeDTO dto){
         return ResponseEntity.ok(service.getTotalSalesPrice(dto.getInitialDate(), dto.getFinalDate()));
     }
 
-    @GetMapping("/totalCliente")
-    public ResponseEntity<Object>getClienteTotal(){
-        return ResponseEntity.ok(service.getClientTotal());
+    @GetMapping("/getHighestClient")
+    public ResponseEntity<HighestClientDTO> getHighestClient(){
+        return ResponseEntity.ok(service.getHighestClient());
     }
 
-    @GetMapping("/totalProduto")
-    public ResponseEntity<Object>getProductTotal(){
-        return ResponseEntity.ok(service.getProductTotal());
+    @GetMapping("/getHighestProduct")
+    public ResponseEntity<HighestProductDTO> getHighestProduct(){
+        return ResponseEntity.ok(service.getHighestProduct());
     }
 
-    @GetMapping("/totalVendedor")
-    public ResponseEntity<Object>getSellerTotal(){
-        return ResponseEntity.ok(service.getSellerTotal());
+    @GetMapping("/getHighestSeller")
+    public ResponseEntity<HighestSellerDTO> getHighestSeller(){
+        return ResponseEntity.ok(service.getHighestSeller());
     }
 
 }
